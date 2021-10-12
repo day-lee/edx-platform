@@ -1,0 +1,30 @@
+{% extends "main_django.html" %}
+{% block title %}notice board{% endblock %}
+
+{% block body %}
+    <h1> 글쓰기 </h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="editor">
+                <p>{{form.title}}</p>
+                {% for error in form.title.errors %}
+                    <p class="error">{{error}}</p>
+                {% endfor %}
+                <p>{{form.author}}</p>
+                <p>{{form.body}}</p>
+                {% for error in form.body.errors %}
+                    <p class="error">{{error}}</p>
+                {% endfor %}
+                <p>{{form.file}}</p>
+            </div>
+            <div class="submit">
+                <br><br>
+                <input type="submit" value="등록">
+                <a class="btn btn-secondary help-button" href="{% url 'board:notice-board' %}" >리스트로 돌아가기</a>
+            </div>
+        </form>
+    <div class="btn_back">
+        <br><br>
+
+    </div>
+{% endblock body %}

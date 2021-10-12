@@ -611,8 +611,11 @@ TEMPLATES = [
                 'edxmako.makoloader.MakoAppDirectoriesLoader',
             ],
             'context_processors': CONTEXT_PROCESSORS,
+            'libraries': {
+                'pagination_extras': 'lms.djangoapps.board.templatetags.pagination_extras',
+            },
             # Change 'debug' in your environment settings files - not here.
-            'debug': False
+            'debug': False,
         }
     },
     {
@@ -2316,6 +2319,9 @@ INSTALLED_APPS = [
 
     # API Documentation
     'rest_framework_swagger',
+
+    # notice board by Dayeon
+    'lms.djangoapps.board',
 ]
 
 ######################### CSRF #########################################

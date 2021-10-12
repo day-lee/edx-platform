@@ -1,0 +1,15 @@
+{% extends "main_django.html" %}
+{% block title %}notice board{% endblock %}
+{% block body %}
+<div class="confirm">
+    <p class="title">게시글: {{post.title}}</p>
+    <p>삭제하시겠습니까?</p>
+    <br><br>
+    <form method="POST">{% csrf_token %}
+        <div class="confirm_btn">
+            <input type="submit" value="삭제">
+        </div>
+    </form>
+</div>
+{% endblock body %}
+

@@ -6,6 +6,8 @@
   <title>{% block title %}{{ platform_name }}{% endblock %}</title>
 
   <link rel="icon" type="image/x-icon" href="{% favicon_path %}" />
+ <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
   {% with "js/i18n/"|add:LANGUAGE_CODE|add:"/djangojs.js" as i18njs_path %}
     <script type="text/javascript" src="{% static i18njs_path %}"></script>
@@ -42,7 +44,6 @@
     {% endwith %}
 
   </div>
-
     {% javascript 'base_application' %}
 
     {% render_block "js" %}

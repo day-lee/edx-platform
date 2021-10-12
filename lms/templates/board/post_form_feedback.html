@@ -1,0 +1,56 @@
+{% extends "board/base.html" %}
+{% block title %}notice board{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2> POST feedback ver</h2>
+        <form method="post" enctype="multipart/form-data" id="id_form">
+         {% csrf_token %}
+            <div class="editor">
+                 <br>
+<!--{# FORM FIELDS  #}-->
+                <p>title <input type="text" name="title" maxlength="100" placeholder="Enter title" id="title">
+                        <span id="span_title"></span></p>
+
+<!--  AUTHOR: user authentication needed, and hidden in real world example -->
+
+
+                <p>django form author: {{form.author}}</p>
+
+                <p><textarea name="body" cols="40" rows="10" required="" id="body" placeholder="Enter content"></textarea></p>
+                <p><input type="file" name="file" id="file"></p>
+            </div>
+<!--{# SUBMIT BUTTON#}-->
+            <div class="submit">
+                <input type="reset" value="reset">
+                <input type="submit" name="submit"  value="submit">
+            </div>
+        </form>
+    <div class="btn_back">
+        <br><br>
+        <a href="/notice-board/">Return to post list</a>
+    </div>
+</div>
+
+
+<!--{# JAVA SCRIPT #}-->
+    <script type="text/javascript">
+    window.addEventListener("load", function(){
+    let form = document.querySelector("form");
+        form.addEventListener("submit", function(event) {
+            let title = document.querySelector("input[name=title]");
+
+                if(title.value === ""){
+                    alert("타이틀 입력");
+                    title.focus();
+                    return false;
+    }
+    });
+    });
+        let name = "{{ user.id }}";
+        document.getElementById("id_author").value = name;
+
+
+    </script>
+
+{% endblock content %}

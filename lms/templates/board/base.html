@@ -1,0 +1,28 @@
+{% comment %}
+extends "board/base.html"
+Not in use, instead
+extends "main_django.html"
+{% endcomment%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Notice Board</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+   <div id="warp">
+        <div id="header">
+        </div>
+        <div id="content">
+            <h1>  <a href="{% url 'board:notice-board' %}"> Notice Board </a></h1>
+            <div class="container">
+                {% block content %}
+                {% endblock content %}
+                <br><br>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

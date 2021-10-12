@@ -1,0 +1,38 @@
+{% extends "main_django.html" %}
+{% block title %}notice board{% endblock %}
+
+
+    <div class="container">
+        <h1 class="title">{{post.title}}</h1>
+        <p class="date">{{post.date_created}}</p>
+    </div>
+
+{% block body %}
+    <div class="content">
+        <div class="container">
+        <h2 class="title">{{post.title}}</h2>
+        <p class="author">작성자: {{post.author}}</p>
+        <p class="date">마지막 수정: {{post.post_edited|date:'Y-m-d H:i'}}</p>
+        <hr>
+        <p class="text">{{post.body|linebreaksbr}}</p>
+{% if post.file %}
+        <p class="file"> • 업로드된 파일: {{post.file}}</p>
+{% else %}
+{% endif %}
+        <hr>
+            <div class="btn">
+                <a class="btn btn-secondary help-button" href="{% url 'board:notice-board' %}">리스트로 돌아가기</a>
+                <a class="btn btn-secondary help-button" href="{% url 'board:post-update' post.id %}">수정</a>
+                <a class="btn btn-secondary help-button" href="{% url 'board:post-delete' post.id %}">삭제</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+
+
+
+
+
+
+

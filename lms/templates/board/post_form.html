@@ -1,0 +1,76 @@
+{% extends "main_django.html" %}
+{% block title %}notice board{% endblock %}
+{% block body %}
+{% if user.is_authenticated %}
+
+<div class="container">
+    <h2> 글쓰기 </h2>
+        <form method="post" enctype="multipart/form-data">
+         {% csrf_token %}
+            <div class="editor">
+                 <br>
+<!--{# FORM FIELDS  #}-->
+                <label for="title"></label> <input type="text" name="title" maxlength="150" placeholder="제목을 작성해주세요." id="id_title">
+                 <p>{{form.author}}</p>
+                <label for="body"></label><textarea name="body" cols="40" rows="500" id="id_body" placeholder="내용을 작성해주세요."></textarea>
+                <br><br>
+                <div class="file-upload">
+                    <label for="file"></label><input type="file" name="file" id="id_file">
+                </div>
+                <br><br>
+            </div>
+<!--{# SUBMIT BUTTON#}-->
+            <div class="submit">
+                <input type="submit" name="submit" value="저장">
+                <input class="btn btn-secondary help-button" type="reset" value=" &nbsp;초기화&nbsp; " style="padding: 4px;">
+                <a class="btn btn-secondary help-button" href="/notice-board/">리스트로 돌아가기</a>
+            </div>
+        </form>
+    <div class="btn_back">
+        <br><br>
+    </div>
+</div>
+
+{% else %}
+<h1>You are not allowed to post, Please login</h1>
+{% endif%}
+
+<style>
+    form {
+        width: 100%;
+        text-align: left;
+      }
+
+</style>
+
+<!--{# JAVA SCRIPT #}-->
+    <script type="text/javascript">
+    window.addEventListener("load", function(){
+        let form = document.querySelector("form");
+            form.addEventListener("submit", function(event) {
+                let title = document.querySelector("input[name=title]");
+                let body = document.querySelector("textarea[name=body]");
+
+                    if(title.value === ""){
+                        alert("제목을 작성해주세요.");
+                        title.focus();
+                        return false;
+                    }
+
+                    else if(body.value === ""){
+                        alert("내용을 작성해주세요.");
+                        title.focus();
+                        return false;
+                    }
+            });
+    });
+
+
+    let name = "{{ user.id }}";
+    document.getElementById("id_author").value = name;
+    document.getElementById("id_author").style.visibility= "hidden";
+
+
+    </script>
+
+{% endblock body %}
